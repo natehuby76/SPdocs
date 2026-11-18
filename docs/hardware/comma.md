@@ -10,10 +10,11 @@ StarPilot supports the Comma 3, Comma 3X, and Comma 4. All three devices provide
 > [!IMPORTANT] Check your car first
 > A comma device does not connect directly to every car. Check the [StarPilot car support page](../cars/support.md) and the [comma supported vehicles list](https://comma.ai/vehicles) before buying anything. Your vehicle may require a specific harness, connector, pedal, or other hardware.
 
-!!! tip "Get $50 off a comma and support StarPilot"
+!!! tip "Get $50 off a comma four and support StarPilot"
 
-    Buying a comma? **You get $50 off** with [our comma referral link](https://refer.comma.ai/FK49A9V){ rel="sponsored" }.
-    **We also receive $50** when you purchase through the link, helping support StarPilot.
+    Buying a comma four? Eligible new customers can get **$50 off** with [our comma referral link](https://refer.comma.ai/FK49A9V){ rel="sponsored" }.
+    We may also receive **$50** for a qualifying referral, helping support StarPilot.
+    See [comma’s referral terms](https://www.comma.ai/terms).
 
 ## Quick comparison
 
@@ -68,7 +69,7 @@ Some StarPilot-supported vehicles need additional hardware, such as a pedal, GM 
 See the following pages before installation:
 
 * [Car support](../cars/support.md)
-* [Installing your Comma device](../install/comma.md)
+* [Installing comma hardware in a Bolt](../install/comma.md)
 * [Installing StarPilot](../software/starpilot.md)
 * [OBD-C cable](./obd-c.md)
 * [Comma Pedal](./comma-pedal.md)
@@ -88,9 +89,9 @@ Do not assume that a used device includes the correct harness for your vehicle o
 
 ## Optional hardware and services
 
-StarPilot can pair a comma device with [Galaxy](../usage/galaxy.md) for remote settings and device management. Comma Prime is optional and is not required to run StarPilot.
+Use [Galaxy](../usage/galaxy.md) on your local network, or pair for remote device management. For phone setup, see [Companion Apps](../usage/companion-apps/index.md). Comma Prime is optional and is not required to run StarPilot.
 
-StarPilot also supports [Chestnut](./chestnut.md) for users who want to run larger driving models with an external GPU. Most users do not need Chestnut.
+StarPilot also supports [Chestnut](./chestnut.md) for users who want to run larger driving models with an external GPU. Most users do not need Chestnut. See [Models](../usage/model-manager.md) for choosing a model and checking its hardware requirements.
 
 ## Which one should I choose?
 

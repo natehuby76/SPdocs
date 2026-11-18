@@ -27,25 +27,25 @@ See the [StarPilot overview](./index.md) and [installation guide](./software/sta
 
 ## What is the Galaxy? Can I change settings from my phone?
 
-Galaxy is StarPilot's browser interface for settings, routes, and device tools. Local access works without Internet. Remote access uses a password protected `galaxy.firestar.link` link and needs Internet. See [Access Galaxy](./usage/galaxy.md#access-galaxy).
+[Galaxy](./usage/galaxy.md) lets you manage StarPilot from a browser on the same local network, or remotely after pairing. Local access works without Internet. Remote access requires Internet. See [Companion Apps](./usage/companion-apps/index.md) for iOS and Android.
 
 ---
 
 ## Does StarPilot support Comma 3, 3X, and 4?
 
-Yes. StarPilot fully supports all three comma devices, including features that stock openpilot has dropped on older hardware (such as the Comma 3). See the [Comma Devices](./hardware/comma.md) page for details.
+Yes. StarPilot supports comma 3, 3X and 4, including continued support for older devices. Feature availability depends on the device, vehicle and configuration. See [Comma Devices](./hardware/comma.md) for details.
 
 ## Does StarPilot support Chestnut (external GPU)?
 
-Yes. StarPilot detects Chestnut on Comma 3, 3X, and 4 and unlocks chestnut-class driving models when the hardware is ready. Most users do not need Chestnut - see the [Chestnut page](./hardware/chestnut.md).
+Yes. You can download compatible GPU models before connecting Chestnut. Running them requires ready, supported hardware. Most users do not need Chestnut. See [Chestnut](./hardware/chestnut.md) and [Models](./usage/model-manager.md).
 
 ---
 
 ## Why is my car driving terribly?
 
-It may be a bad setting. Try enabling safe mode to revert to all defaults.
-If that fixes it, reset your toggles to defaults. 
-If not, create a troubleshooting thread in the discord.
+If a custom setting may be contributing, try [Safe Mode](./usage/settings.md#safe-mode). It temporarily bypasses supported custom features and tuning without erasing their saved settings. To restore default toggle values, back up your settings first and follow [Backup and reset](./usage/settings.md#backup-and-reset).
+
+If the behavior persists, include your vehicle, hardware, software version and route details in a [support ticket](./ticketsystem.md).
 
 ---
 
@@ -57,73 +57,44 @@ If not, create a troubleshooting thread in the discord.
 
 ## Is the openpilot install reversible?
 
-Yes. The openpilot hardware install is fully reversible. 
-There are no car modifications, just custom harnesses that intercept at the existing harnesses.
-
-When the comma USB-C is unplugged, your car can't tell the difference.
-
-When the openpilot hardware (camera harnesses, pedal, ASCM, SASCM, SDSU, SDGM, etc.) are removed,
-the car returns to stock.
+A standard plug-in harness installation can generally be removed. Firmware flashing and hardware retrofits may require separate restoration. See the [Volt firmware guidance](./cars/volt.md#flashing-volt-firmware) for an example.
 
 ---
 
 ## Will openpilot navigate on its own?
 
-No. [Navigation & Maps](./exclusive/navigation.md) displays a route and helps the driving model prepare for turns. You still steer through intersections and exits and remain responsible for the drive.
+StarPilot is driver assistance. Stay attentive and ready to take control. [Navigation & Maps](./exclusive/navigation.md) can provide guidance for supported low-speed turns with the matching turn signal on and blind spot clear. It can also request slowing for an upcoming maneuver when StarPilot controls speed. See [Operation](./usage/operation.md#navigation) for driving behavior.
 
 ---
 
 ## How do I clear the "LKAS Fault: Restart the car" error?
 
-1. Turn your car off
-2. Open your car door
-3. Wait 2 minutes (you can close your door in the meantime)
-4. Turn car on
-5. Done. LKAS fault should have cleared.
+Pull over safely and turn the vehicle off. Follow the fault recovery guidance for your vehicle. If the fault recurs, report the exact configuration and include the route or logs.
 
 ---
 
 ## How do I avoid LKAS faults?
 
-1. Never reboot, unplug, or power off the comma while your car is on. 
-This **will** cause an LKAS fault.
+Switch the vehicle off before rebooting, unplugging or turning off the comma. Interrupting the connection while the vehicle is on can cause an LKAS fault.
 
 ---
 
 ## How do I clear the "Cruise Fault: Restart the car" error?
 
-This error applies only to vehicles with adaptive cruise control (ACC).
-
-1. Turn car off
-2. Open car door
-3. Close car door
-4. Turn car on
-5. Wait 5 seconds
-6. If your error is cleared, you are done. 
-If the error is still present, go back to step 1. This can take 6 or more tries.
+Park safely and turn the vehicle off before following the restart guidance for your vehicle. If the fault persists, include the hardware, software version and route details in a [support ticket](./ticketsystem.md).
 
 ---
 
 ## How do I clear the "Controls Mismatch" error?
 
-1. Turn car off
-2. Wait 5 seconds
-3. Turn car on
-
-If the error persists, restart the comma device with the car off.
-
-> [!NOTE]
-> Remote Start Issues
-> If you use remote start and the "boot comma with remote start" setting is enabled,
-> to avoid issues, you should cycle the car off and then back on
-> again after you get in. Otherwise, you might get the Controls Mismatch error.
+Park and switch the vehicle off before restarting the comma. If the error persists, report your exact vehicle configuration, how you started the car and the matching route or log.
 
 ---
 
 ## How do I upload logs for troubleshooting?
 
 Logs are sent as routes. A route is a single drive (from car on to car off), 
-with 1 minute segments. Log data contains all Openpilot data: video, comms, gps, etc.
+with one-minute segments. Log data can include video, vehicle messages and GPS. If support accepts a local export, use [Routes in Galaxy](./usage/galaxy.md#routes) to download the recording or logs. Downloading them does not upload anything to comma Connect.
 
 1. Navigate to [connect.comma.ai](https://connect.comma.ai)
 2. Find the route your issue happened on and click on it. 
@@ -133,8 +104,7 @@ To undo your last selection, click the back arrow just above the video slider.
 Once you are happy with the segments selected, proceed to the next step.
 4. Click `Files`, then next to `All logs`, click `(upload ## logs)`
 5. Wait for data to be uploaded (you can check the progress using `Files` > `View Upload Queue`)
-6. Click `More info`, then enable `Public access` and 
-copy the Route info using the Copy button: ![Copy button](./assets/images/copy_clipboard.png)
+6. If you choose to share the route publicly, open **More info**, enable **Public access** and copy the route information. Turn public access off when sharing is no longer needed.
 7. [Create a ticket](./ticketsystem.md) using the buttons in
 [the #submit-feedback-and-reports channel of the Discord server](https://firestar.link/discord).
 Be as descriptive as possible. 
@@ -143,43 +113,28 @@ StarPilot has a unique, community-focused ticketing system that helps users and 
 
 > [!TIP]
 > Ending a route log early
-> To make it easier to find the error, you can force the log to end early using:
-> Settings > Utilities > Force offroad. This will make sure the error is near the end of
-> the log. 
+> While safely parked, open **Settings → System → Force Drive State → Offroad** on
+> the comma to stop driving services and end the route. In Galaxy, the equivalent control is
+> **Tools → System Tools → Software & Updates → Advanced options → Force device offroad**.
+> Return the comma to **Auto**, or turn off **Force device offroad** in Galaxy, when you are
+> done.
 
 ---
 
 ## I'm stuck on the boot logo screen. How do I fix it?
 
-This is usually caused by a sticky param, especially when coming from another openpilot fork.
+If Galaxy is reachable, try the [backup and reset tools](./usage/settings.md#backup-and-reset). Save any recordings or logs you need before resetting the device.
 
-1. Unplug the device
-2. Wait 60 seconds
-3. Plug it back in
-4. Tap the center of the screen over and over until the reset prompt comes up
-5. Reset
-7. Install using link: `starpilothq/saveme`
-8. After the device boots, use the [branch switcher](./software/starpilot.md#changing-branches) to go back to `StarPilot`
-
-If issues persist, reach out in [Discord](https://firestar.link/discord).
-
-> [!IMPORTANT]
-> If [Galaxy](./usage/galaxy.md) still works, open **Logs & Diagnostics → Troubleshoot → Show Non-Default Values** and review changed settings before using a recovery branch.
+If Galaxy is unavailable, follow [If You Cannot Open Settings](./software/starpilot.md#if-you-cannot-open-settings) for your device. A factory reset erases stored content and settings. If the problem persists, ask in [Discord](https://firestar.link/discord).
 
 ---
 
 ## My device is behaving oddly. What is a "saveme"?
 
-Sometimes the device can get into a bad state due to a bad setting or conflicts during updates 
-(especially if you went a long time without updating). 
-A "saveme" will reset all settings and return to near new state (without require a flash).
-
-If Galaxy still works, open **Logs & Diagnostics → Troubleshoot → Show Non-Default Values**. Use **Reset Selected** or **Reset All Non-Default Settings** and confirm. This resets available saved settings, not the entire device.
+For a settings problem, open [Backup and reset](./usage/settings.md#backup-and-reset) in Galaxy. Use **Back up toggles** first. You can then **Restore toggles** from a compatible backup, or use **Reset toggles to default** while parked. The toggle reset keeps your recordings and other device data.
 
 ---
 
 ## How do I fix the "CAN bus disconnected" Error?
 
-Openpilot had an issue communicating on the CAN bus. 
-Reseat (unplug and plug back in) all of your openpilot connections 
-(harnesses, OBD-C, pedal, etc).
+With the vehicle off, inspect and reseat connections according to the hardware guide for your setup. Check the harness, OBD-C cable and pedal connection where applicable. If the error persists, ask for [support](./ticketsystem.md) with your vehicle, hardware and logs.

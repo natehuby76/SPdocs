@@ -7,15 +7,9 @@ description: Find GM harness and harness box information for StarPilot vehicle s
 
 {% include-markdown "./embed/see-car-guide.md" %}
 
-The GM harness and harness box are used for openpilot to communicate with your car.
+The GM harness and harness box are used for openpilot to communicate with your car. This GM harness set is separate from ASCM and SDGM harnesses. Match the harness and box connector before ordering. The supplier currently sells the 9-pin set. Match existing hardware before replacing an individual part.
 
 Purchase from tinybear: [Harness set (Harness Cable + Harness Box)](https://shop.beartech.ca/products/harness-set-gm?variant=44665970688181)
 
-> [!WARNING] Purchasing a harness from Comma
-> While you could purchase a harness from Comma, we do not recommend it as it is more 
-> expensive and BearTechWorkshop's customer support is better should you run into the rare 
-> occurrence of product issues.
->
-> If you need a pedal (or potentially want one in the future), 
-> do not purchase the harness box from Comma 
-> as it no longer has the RJ45 port needed by the Comma Pedal.
+> [!WARNING] Harness box and pedal compatibility
+> If your setup calls for a pedal, confirm the box has the required RJ45 port and the correct connector for your harness. See the [pedal guide](./comma-pedal.md).

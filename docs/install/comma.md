@@ -3,21 +3,25 @@ title: Install comma Hardware in a Chevrolet Bolt
 description: Follow Chevrolet Bolt comma device installation guidance, including camera harness power, pedal installation sequencing, and a hardware install video.
 ---
 
-# Installing your Comma device
+# Installing comma hardware in a Bolt
 
-When installing a Comma unit in a Bolt, follow the [Comma website's guide](https://comma.ai/setup/comma-3x?harness=Chevrolet%2520Bolt%2520EV%25202022-23), but **disregard the optional step for the Comma Power** (OBD-II power). The Bolt's camera harness provides sufficient power, fulfilling the benefits listed for Comma Power. To preserve your car's 12V battery, the Comma unit will automatically shut off after 6 hours in the off-road state.
+<span id="installing-your-comma-device"></span>
+
+This page covers Bolt hardware. Follow the [comma setup guide for your device and vehicle](https://comma.ai/setup), alongside the [Bolt hardware guide](../cars/bolt.md).
+
+Power requirements depend on the harness and vehicle. Follow the guide for your setup. Parked runtime depends on available power, the shutdown timer and the battery-voltage cutoff.
 
 !!! note
 
-    If you are installing a pedal, complete the next step of the guide before closing up the camera/harness area.
+    If you are installing a pedal, follow the [pedal installation steps](./pedal.md)
+    before closing up the camera/harness area.
 
 ## Install Video
 
 Hardware and fork options have changed over the years, especially across car variants.
 
-[This video from Transport Evolved](https://www.youtube.com/watch?v=U5pBTjR0rJ4&t=317s) is a solid walkthrough on a 2017 Bolt. If you are not installing a pedal, you can ignore the steps involving an Ethernet cable. Also, the software and fork landscape has changed significantly since 2023, so refer to the software section of this documentation for more info. 
+[Transport Evolved’s video](https://www.youtube.com/watch?v=U5pBTjR0rJ4&t=317s) shows a 2017 Bolt installation. The Ethernet cable is for pedal installations. For software setup, follow [Installing StarPilot](../software/starpilot.md).
 
 !!! warning "The Stupid White Clip"
 
-    There is a tiny white clip on the connector to the camera that you have to pull back in order to add the harness. It can be frustrating to deal with. Some suggestions include using an eyeglass screwdriver, or a metal credit card (that you don't care about damaging).
-    
+    There is a tiny white clip on the connector to the camera that you have to pull back in order to add the harness. Follow the harness instructions for releasing it.

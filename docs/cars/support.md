@@ -8,6 +8,13 @@ description: Check the vehicles StarPilot adds or improves over stock openpilot,
 StarPilot adds support for cars that stock openpilot doesn't cover, and re-tunes a number
 of cars that *are* supported by stock so they drive better.
 
+Support depends on your car’s model year, trim, region, steering system, ACC configuration,
+and installed hardware. Check the requirements for your exact configuration before choosing
+hardware or enabling controls.
+
+Trim, package, and harness notes describe specific configurations. Check the car guide
+or ask in [Discord](https://firestar.link/discord) about other setups.
+
 > [!TIP] Stock support list
 > For everything stock openpilot already supports, see the official
 > [comma supported vehicles list](https://comma.ai/vehicles).
@@ -25,18 +32,25 @@ of cars that *are* supported by stock so they drive better.
 
 ### GM (Buick / Cadillac / Chevrolet / GMC)
 
-* Buick Baby Enclave 2020-23
+**No-ACC** configurations use different speed-control methods, including factory cruise
+buttons, a pedal interceptor, or a vehicle-specific retrofit. Braking and standstill behavior
+depend on the configuration. Follow the car-specific guide before choosing hardware.
+
+* Buick Baby Enclave 2020-23 — SDGM Harness; Driver Assist Package
+* Buick Envision 2016 (Chinese specification) — SDGM retrofit and custom cross-flashed ADAS stack; ACC retains speed control
 * Buick LaCrosse 2017-19 ASCM Harness
 * Buick LaCrosse 2019 US ASCM Harness
 * Cadillac CT6 2016-20 — No-ACC
 * Cadillac Escalade 2018 ASCM Harness
 * Cadillac Escalade ESV Platinum 2019 ASCM Harness
+* Cadillac XT4 2023 — SDGM setup; Driver Assist Package
 * Cadillac XT4 2023 — No-ACC
-* Cadillac XT5 2022
+* Cadillac XT5 2022 — SDGM Harness; Driver Assist Package
 * Cadillac XT5 2022 — No-ACC
-* Cadillac XT6 2020
-* Chevrolet Blazer 2019-25
-* Chevrolet Bolt EV / EUV ACC 2022-23
+* Cadillac XT6 2020 — SDGM Harness; Driver Assist Package
+* Chevrolet Blazer 2019-25 — SDGM Harness; Driver Assist Package
+* Chevrolet Bolt EV 2022-23 — factory-ACC setup: 2LT with Adaptive Cruise Control Package
+* Chevrolet Bolt EUV 2022-23 — factory-ACC setup: Premier or Premier Redline, without Super Cruise Package
 * Chevrolet Bolt EV 2017 — No-ACC
 * Chevrolet Bolt EV 2018-21 — No-ACC
 * Chevrolet Bolt EV / EUV 2022-23 — No-ACC
@@ -45,20 +59,22 @@ of cars that *are* supported by stock so they drive better.
 * Chevrolet Equinox 2019-22 — No-ACC
 * Chevrolet Equinox 2019-22 *(improved over stock)*
 * Chevrolet Malibu 2017-19 ASCM Harness
-* Chevrolet Malibu 2019
+* Chevrolet Malibu 2019 — SDGM Harness
 * Chevrolet Malibu 2023 — No-ACC
 * Chevrolet Malibu Hybrid 2017 — No-ACC
 * Chevrolet Silverado 1500 2020-21 — No-ACC
 * Chevrolet Silverado 1500 *(improved over stock)*
-* Chevrolet Suburban Premier 2016-20
+* Chevrolet Suburban Premier 2016-20 — ASCM Harness
 * Chevrolet Suburban Premier 2016-20 — No-ACC
 * Chevrolet Trailblazer 2021-22 — No-ACC
 * Chevrolet Trailblazer 2021-22 *(improved over stock)*
-* Chevrolet TRAX 2024-25
+* Chevrolet Traverse 2022-23 — SDGM Harness; RS, Premier, or High Country trim
+* Chevrolet TRAX 2024-25 — Camera Harness; manual configuration; recognized vehicle network layout required
 * Chevrolet Volt 2016-18 — No-ACC (OBD-C / L&P Harness)
 * Chevrolet Volt 2017-18 ASCM Harness
-* Chevrolet Volt 2017-18 Camera Harness
+* Chevrolet Volt 2017-18 Camera Harness — manual configuration; recognized vehicle network layout required
 * Chevrolet Volt 2017-18 *(improved over stock)*
+* Chevrolet Volt 2019 — SDGM Harness; factory ACC and LKAS
 * GMC Acadia 2018 ASCM Harness
 * GMC Sierra 1500 2020-21 — No-ACC
 * GMC Yukon 2019-20 — No-ACC
@@ -70,7 +86,7 @@ of cars that *are* supported by stock so they drive better.
 * Acura MDX 2014-16
 * Acura MDX 2017-19
 * Acura MDX 2020
-* Acura MDX 2025
+* Acura MDX 2025-26 (excluding Type S)
 * Acura MDX Hybrid 2017-19
 * Acura MDX Hybrid 2020
 * Acura RDX 2022-26
@@ -79,13 +95,15 @@ of cars that *are* supported by stock so they drive better.
 * Acura TLX 2024-25
 * Honda Accord 2016-17
 * Honda Accord Hybrid 2017
-* Honda Accord Hybrid 2023-25
-* Honda Accord *(improved over stock, with modified EPS firmware)*
-* Honda Civic 2022-24
-* Honda Civic *(improved over stock, with modified EPS firmware)*
+* Honda Accord Hybrid 2023-26
+* Honda Accord *(improved over stock, with supported modified EPS firmware)*
+* Honda Civic / Civic Hatchback 2022-26
+* Honda Civic / Civic Hatchback Hybrid 2025-26
+* Honda Civic Hatchback Hybrid (Europe) 2023
+* Honda Civic *(improved over stock, with supported modified EPS firmware)*
 * Honda Clarity 2018-21
-* Honda CR-V Hybrid 2023-25
-* Honda CR-V 5G *(improved over stock, with modified EPS firmware)*
+* Honda CR-V Hybrid 2023-27
+* Honda CR-V 5G *(improved over stock, with supported modified EPS firmware)*
 * Honda Fit (Taiwan) 2021
 * Honda Fit (Taiwan) 2024-25
 * Honda HR-V 2023-25 *(improved over stock)*
@@ -93,6 +111,9 @@ of cars that *are* supported by stock so they drive better.
 * Honda Odyssey (Taiwan) 2018-19
 * Honda Pilot *(improved over stock)*
 * Honda Prelude 2026
+
+Modified EPS support depends on the vehicle and firmware version. Confirm the exact setup
+before flashing.
 
 ### Hyundai / Kia / Genesis
 
@@ -109,7 +130,7 @@ of cars that *are* supported by stock so they drive better.
 * Hyundai Elantra Hybrid Non-SCC 2022
 * Hyundai Elantra Non-SCC 2022
 * Hyundai Ioniq 5 N (with HDA II) 2024
-* Hyundai Ioniq 5 PE (with HDA II & LFA2) 2025-26
+* Hyundai Ioniq 5 PE (with HDA II & LFA2) 2025-27
 * Hyundai Ioniq 6 *(improved over stock)*
 * Hyundai Ioniq 9 (with HDA II & LFA2) 2025-26
 * Hyundai Kona (without HDA II) 2024-25
@@ -136,10 +157,10 @@ of cars that *are* supported by stock so they drive better.
 * Kia Forte Non-SCC 2019
 * Kia Forte Non-SCC 2021
 * Kia K4 (with HDA II) 2025
-* Kia K4 (without HDA II) 2025
+* Kia K4 (without HDA II) 2025-26
 * Kia K5 (without HDA II) 2025
-* Kia Niro EV (with HDA II) 2025
-* Kia Niro Hybrid 2023
+* Kia Niro EV (with HDA II) 2024-25
+* Kia Niro Hybrid 2023-24
 * Kia Niro Plug-in Hybrid 2022 *(improved over stock)*
 * Kia Seltos Non-SCC 2023-24
 * Kia Sorento (without HDA II) 2024-25
@@ -150,9 +171,9 @@ of cars that *are* supported by stock so they drive better.
 * Kia Telluride (without HDA II) 2023-25
 * Kia XCeed Plug-in Hybrid 2021
 
-> [!NOTE] Improved CAN-FD steering
-> Existing CAN-FD cars (Ioniq 5, Ioniq 6, Tucson 2022 CAN-FD, Kona Electric 2nd-gen,
-> Kia EV6, Genesis GV60 / GV70 / GV80) get stronger steering torque and limits over stock.
+> [!NOTE] CAN-FD steering
+> CAN-FD cars use different steering systems and limits. Some use torque control; others
+> use angle control. Available controls depend on the vehicle and configuration.
 
 ### Toyota
 
@@ -166,8 +187,12 @@ of cars that *are* supported by stock so they drive better.
 * Subaru Ascent 2023-25 *(improved over stock)*
 * Subaru Crosstrek 2025 *(improved over stock)*
 * Subaru Impreza *(improved over stock)*
+* Subaru Impreza RS 2025 — angle-steering setup
 * Subaru Legacy 2025 *(improved over stock)*
 * Subaru Outback 2023-24 *(improved over stock)*
+
+Available Subaru controller options and limits depend on the steering system and vehicle
+configuration.
 
 ### Chrysler / RAM
 
@@ -179,16 +204,20 @@ of cars that *are* supported by stock so they drive better.
 * Ford Edge 2022
 * Ford F-150 Lightning 2022-25
 * Ford Mondeo 2014-22
-* Ford Transit 2025
+* Ford Transit 2025 (Co-Pilot360 Assist+)
 
 ### Nissan
 
-* Nissan Altima 2019-20, 2024
+* Nissan Altima 2019-24
 * Nissan Leaf 2018-25 — Instrument Cluster
 
 ### Tesla
 
 * Tesla Model S (Pre-AP) 2012-14
+* Tesla Model S (with HW1) 2014-16
+
+Pre-AP and HW1 use different hardware and control setups. Confirm the exact configuration
+before installing.
 
 ### Volkswagen Group
 
@@ -198,15 +227,15 @@ of cars that *are* supported by stock so they drive better.
 * Volkswagen ID.5 2022-23
 * Volkswagen Jetta 2018-23
 
-## Brand-wide tuning improvements
+## Vehicle tuning improvements
 
-These improvements apply to **every** car of the brand, including models already supported by stock:
+<span id="brand-wide-tuning-improvements"></span>
 
-* **All Hyundai / Kia / Genesis** — higher max acceleration
-* **All Honda / Acura** — smoother stops
-* **All Toyota** (TSS2 torque cars) — lateral tuning refinement
-* **All GM** — smoother low-speed braking and reworked gas/regen response
+StarPilot includes vehicle-specific tuning and optional control settings. Available changes depend on the vehicle, steering system, speed-control configuration and selected controller.
 
-> [!NOTE] Tuned identically to stock
-> Mazda, Tesla (Model 3 / Y), Nissan, and Volkswagen existing platforms use the same
-> tuning as stock openpilot (StarPilot only changes their features/toggles, not tuning).
+* **Hyundai / Kia / Genesis** — Acceleration changes depend on the vehicle and whether StarPilot controls speed.
+* **Honda / Acura** — Stopping behavior depends on the speed-control configuration.
+* **Toyota** — Lateral tuning refinements are available on supported torque-steering setups.
+* **GM** — Braking and regen behavior depend on the ACC, pedal and retrofit configuration.
+
+Some configurations retain their standard controller settings. Optional StarPilot controllers and vehicle-specific features can change behavior where supported.

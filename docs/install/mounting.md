@@ -33,7 +33,7 @@ Make sure you have:
 The device should face straight ahead rather than toward the driver. Do not place it far to one side of the windshield unless your vehicle's layout makes centered placement impossible.
 
 > [!TIP] Off-center mounting
-> If your vehicle does not allow the comma device to be mounted on the centerline, use Camera Offset in Galaxy's advanced settings to compensate for its position. Camera Offset virtually shifts the camera perspective used by the driving model so it can align with the center of the car. Positive values bias the model center left and negative values bias it right. Make small adjustments and verify the result after each change. Physical centering is still preferred when possible.
+> Use the recommended physical mounting position and check calibration after moving the device.
 
 ## Attach the mount
 
@@ -55,7 +55,7 @@ Take your time when positioning the mount. The adhesive is difficult to repositi
 4. Route the cable so it does not block either road camera or the driver-monitoring camera.
 5. Recheck the view from the driver's seat and make sure the device does not interfere with normal visibility.
 
-Continue with [Installing your Comma device](./comma.md) if the harness and cable routing are not finished.
+For a Bolt, see [Installing comma hardware in a Bolt](./comma.md) for the rest of the harness and cable setup.
 
 ## After mounting
 
@@ -71,7 +71,7 @@ If calibration repeatedly fails or the displayed road view appears noticeably ti
 
 ## Check your calibration with OPCal
 
-[OPCal](https://opcal.mindflakes.com) is a community-made tool that reads the calibration data from a public comma route. It can show where your device's pitch and yaw landed within the allowed range and can scan a drive for invalid calibration messages.
+[OPCal](https://opcal.mindflakes.com) is a community-made tool that reads calibration data from a comma route. It can show where your device's pitch and yaw landed within the allowed range and can scan a drive for invalid calibration messages.
 
 Use Quick look after mounting or moving your device:
 
@@ -87,7 +87,7 @@ Use Quick look after mounting or moving your device:
 Use Full scan when calibration became invalid or changed during a drive. Full scan checks the complete route and reports an invalid calibration message along with the most recent valid calibration when one is available.
 
 > [!NOTE] Public route access
-> OPCal needs the route to be public so it can download the route logs. The processing happens in your browser. You can disable Public access again as soon as the scan finishes.
+> For the public-route method above, enable Public access while reading the route, then turn it off. The processing happens in your browser.
 
 > [!TIP] Reading the result
 > A valid result means the device is within openpilot's accepted calibration limits. It does not necessarily mean the mount is perfectly centered. If the result is close to a limit, the road view is visibly tilted, or calibration repeatedly becomes invalid, inspect the mount before driving again.

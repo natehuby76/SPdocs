@@ -7,13 +7,15 @@ description: Find StarPilot vehicle setup guides for Chevrolet Bolt, Volt, and H
 
 Hardware setup guides:
 
+Use the guide that matches your vehicle’s year, trim, and hardware.
+
 * [Bolt](./bolt.md)
-* [Volt](./volt.md)
-* [Hyundai / Kia HDA2 longitudinal setup](./hkg-hda2-longitudinal.md)
+* [Volt & Other ASCM/SDGM Cars](./volt.md)
+* [Longitudinal setup for some Hyundai / Kia HDA2 vehicles](./hkg-hda2-longitudinal.md)
 
 > [!IMPORTANT] Car Support
-Not sure if your car is supported? See [Car Support](./support.md) for the cars
-StarPilot adds or tunes better than stock openpilot.
+> Not sure if your car is supported? See [Car Support](./support.md) for the cars
+> StarPilot adds or tunes better than stock openpilot.
 
 If you need help with hardware setup, want to add support for a new car, 
 or have any other questions, ask in our [Discord](https://firestar.link/discord)!

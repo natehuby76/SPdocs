@@ -1,6 +1,2 @@
-> [!NOTE] Comma Power is not needed
-> The [Comma Power](https://comma.ai/shop/comma-power) cable is not needed for 
-> most GM vehicles (eg. bolt and volt).
->
-> The 12V power is provided by the camera harness (or OBD for non-LKAS vehicles)
-> and remains on while the car is powered off.
+> [!NOTE] Parked power
+> Power requirements differ by harness. Follow your car’s hardware guide. SDGM requires the correct OBD power connection. Parked runtime depends on available power, the shutdown timer and the battery-voltage cutoff.

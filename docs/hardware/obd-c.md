@@ -5,12 +5,7 @@ description: Find OBD-C cable information for StarPilot hardware setups, includi
 
 # OBD-C Cable
 
-The Comma 4 comes with a short OBD-C cable. If you need another one for setups like 
-SASCM, ASCM, SDGM, OBD harness:
-
-Any USB-C 3.2 cable will work to meet the 
-[OBD2-C Spec](https://github.com/commaai/hardware/blob/master/harness/OBD-C.sch.pdf).
-Length needed will vary by car.
+The comma four comes with a short OBD-C cable. Use an OBD-C cable compatible with your harness and device. Confirm the required connections and length for your setup. ASCM, SDGM, SASCM and OBD harness setups can require different cable lengths. See the [Volt and GM hardware guide](../cars/volt.md) for examples and the [OBD-C schematic](https://github.com/commaai/hardware/blob/master/harness/OBD-C.sch.pdf) for connector details.
 
 Some example options:
 

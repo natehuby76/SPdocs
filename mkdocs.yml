@@ -45,7 +45,7 @@ nav:
   - Comma Hardware Info:
       - Comma Devices: hardware/comma.md
       - Comma Installation:
-          - Installing your Comma: install/comma.md
+          - Installing comma hardware in a Bolt: install/comma.md
           - Mounting your Comma: install/mounting.md
       - Chestnut (External GPU): hardware/chestnut.md
       - Comma Pedal:

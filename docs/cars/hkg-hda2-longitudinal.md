@@ -1,56 +1,36 @@
 ---
 title: Hyundai & Kia HDA2 Longitudinal Setup
-description: Configure StarPilot longitudinal control for the listed Ioniq 6, Kia EV9, and Ioniq 5 HDA2 vehicles, including fingerprint and vehicle settings.
+description: Configure StarPilot longitudinal control for the listed Ioniq 6, Kia EV9, and Ioniq 5 HDA2 vehicles, including vehicle identification and startup checks.
 ---
 
 # How to Set Up Long on Some HDA2 Vehicles
 
-This is how to set up long on:
-
-* Ioniq 6 HDA2 2023-2025
-* EV9 HDA2 2024-2026
-* Ioniq 5 2026 HDA2
+This guide covers specific configurations of the Hyundai Ioniq 6 HDA II, Kia EV9 HDA II and Hyundai Ioniq 5 PE with HDA II and LFA2. Check [Vehicle Compatibility](./support.md) for the applicable model and configuration.
 
 ## First-Time Things to Toggle
 
-1. Toggle on `Disable Automatic Fingerprint Detection` in
-   `Settings > StarPilot > Vehicle Settings`.
-2. Set `Car Make` to `Hyundai`.
-3. Set `Car Model` to your car model. In my instance, this is
-   `Hyundai Ioniq 6 (with HDA II) 2023-2024`.
-4. Toggle on `openpilot Longitudinal Control (Alpha)` in `Settings > Developer`.
+In Galaxy, open **Toggles → Vehicle**. Verify the recognized model and use the exact registered configuration if manual selection is needed. On setups where **openpilot Longitudinal Control (Alpha)** is available, follow the [Openpilot Toggles](../usage/settings.md#openpilot-toggles) guidance before enabling it. Availability depends on the vehicle and configuration.
 
-## Every-Time Startup Procedure
+## Startup by vehicle
 
-1. Make sure the car is off.
-2. Keep your foot off the brake.
-3. Press the start button twice.
-4. Wait for the comma to fully turn on to an onroad state.
-5. Wait for the cruise-control indicator on the dash to show `--- MPH` or `HDA 25`.
-6. Push the brake pedal down.
-7. Hit the start button once.
+<span id="every-time-startup-procedure"></span>
 
-Long should be enabled now!
+Startup checks differ by vehicle. Use the startup instructions confirmed for your exact vehicle and control configuration.
 
-## Engaging Long After You See `--- MPH/KPH`
+On an **Ioniq 5 PE with HDA II and LFA2**, the vehicle can retain factory speed control
+when takeover is unavailable.
 
-Our wheel controls are slightly different from other forks:
+A cruise or HDA indicator on the dashboard does not by itself confirm that StarPilot is
+controlling speed. If you're unsure how to confirm the handoff or a startup check fails,
+leave the controls disengaged and ask in [Discord](https://firestar.link/discord) with
+your vehicle, hardware, software version and what you saw at startup.
 
-* LKAS button = Always on Lateral (M.A.D.S.)
-* Cruise button = Always on Lateral (M.A.D.S.)
-* Cruise knob down = Activate long at the current speed
-* Cruise knob in = Deactivate long
-* Cruise knob up = Turn long back on at the previously set speed
+## Engaging speed control
 
-After it's engaged:
+<span id="engaging-long-after-you-see-mphkph"></span>
 
-* Cruise knob down = Lower the max-speed threshold
-* Cruise knob up = Raise the max-speed threshold
+Use the controls for your vehicle. Depending on the configuration, steering and speed control can engage separately. Use the applicable SET, RES and Cancel controls as described in [Operation](../usage/operation.md#basic-operation). SET adjustments can differ between factory cruise and StarPilot speed control. See [Wheel Controls](../usage/settings.md#wheel-controls).
 
 ## Troubleshooting
 
-If the `openpilot Longitudinal Control (Alpha)` toggle is grayed out, try one of these:
-
-1. Restart the comma.
-2. Turn off the car, turn off the comma, and wait for the comma to shut off completely.
-   Then go through the every-time startup procedure again.
+Verify the recognized vehicle and check the displayed availability or startup status. If the **openpilot Longitudinal Control (Alpha)** control is unavailable for your configuration, keep factory cruise settings. Switch the vehicle off before restarting the comma. If the expected handoff is still unavailable, include the startup status and route details in a [support ticket](../ticketsystem.md).

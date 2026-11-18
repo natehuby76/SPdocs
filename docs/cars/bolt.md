@@ -7,57 +7,37 @@ description: Choose hardware for StarPilot on Chevrolet Bolt EV, including ACC a
 
 ## Vehicle Quirks
 
-Things to be aware of for your vehicle relating to openpilot:
+Things to be aware of for your vehicle:
 
-* Openpilot cannot steer below 7 mph.
-* Non-ACC Bolts are limited to regen-only braking using a [Comma Pedal](../hardware/comma-pedal.md). 
-This means a max 70kW of deceleration meaning no emergency stops 
-and poor low-speed slowing performance. 
-You will occasionally need to brake manually.
-* ACC Bolts without a pedal are limited to 10kW of regen 
-(but unlike non-ACC, openpilot can control your friction brakes).
-    * With a [Comma Pedal](../hardware/comma-pedal.md), openpilot blends friction braking 
-with up to 70kW of regen. See [ACC Bolts](#acc-bolts).
-* ACC Bolts without a pedal do not have stop and go support (press accelerator pedal or press CC resume).
-    * ACC and non-ACC Bolts with a Comma Pedal do have stop-and-go support.
-* *22-23 Bolts only*: Sport mode will decrease available steering torque.
-* NNFF should not be used with Bolts.
-* The regen paddle can be used to disengage openpilot.
-* Steering wheel LKAS button and light do not work when comma is connected (purely a cosmetic issue).
-    * If pressed, the dash will display "LKAS is unavailable" but op steering will still work.
-    * The button also cannot be used with the openpilot custom button actions 
-(ACC models can still use the distance button).
+* Steering assistance has a minimum operating speed. Be ready to steer at low speeds.
+* On supported non-ACC Bolts, the [Comma Pedal](../hardware/comma-pedal.md) uses regen in one-pedal or L mode to slow the vehicle. Braking can be limited, especially at low speed. Be ready to brake manually.
+* On supported ACC Bolts, StarPilot can request friction braking through the factory ACC system. A compatible pedal can add stronger regen and support restarting from a stop. See [ACC Bolts](#acc-bolts).
+* The regen paddle can disengage assistance where supported. If the LKAS button is unavailable with the harness connected, some ACC configurations can still use the distance button for supported actions.
 
 ## Car Configuration
 
 ### StarPilot Settings
 
-Enable **Disable Automatic Fingerprint Detection** and manually select your vehicle make and
-model. Fingerprinting can be inconsistent on GM vehicles, and an ACC Bolt can sometimes be
-detected as a non-ACC Bolt, leaving it without gas or brake control.
+In Galaxy, open **Toggles → Vehicle**. Use **Auto** or select the exact registered vehicle configuration if manual identification is needed. With the vehicle off, verify the ACC, harness and pedal options for your setup before your next drive. See [Settings](../usage/settings.md#lateral-tuning) for supported controller choices.
 
 ### Tires
 
-* Keep your tires at the recommended 38 psi.
+* Use the pressures recommended for your vehicle and tires.
 * Keep your car aligned.
-* Swapping tires is okay, but don't change wheel sizes. Changing wheel sizes can cause issues.
+* Check the vehicle manufacturer’s guidance before changing wheel or tire sizes.
 
 ### One Pedal Driving/L Mode
 
-StarPilot with the Comma Pedal relies on one pedal driving to slow down. You must have your
-car in One Pedal mode on Gen 2 Bolts or L mode on Gen 0 and Gen 1 Bolts.
+On Bolt setups that use the Comma Pedal for regen braking, use One Pedal mode on Gen 2 or L mode on Gen 0 and Gen 1. Factory ACC and ACC-plus-pedal configurations have their own braking behavior.
 
 ### Sport Mode
 
-It is generally recommended to leave Sport Mode off. The `Map Accel/Decel to Gears` setting
-allows you to use the Sport Mode button to change between acceleration profiles, but Sport
-Mode changes the lateral response on Gen 2 cars and gives you less steering torque.
+On affected 2022–23 Bolts, Sport Mode can reduce available steering torque. Leave it off if it affects steering response.
 
 ## Vehicle Requirements
 
-> [!WARNING] SuperCruise Bolts Not Supported
-> If your Bolt EUV is equipped with SuperCruise, it is not compatible with the Comma or 
-> any fork of openpilot at the moment (and likely never will be, sorry).
+> [!WARNING] Super Cruise
+> The factory-ACC setup documented here is for Bolt EUVs without the Super Cruise package. Check [Vehicle Compatibility](./support.md) for supported configurations.
 
 ### Lane Keep Assist System (LKAS)
 
@@ -80,8 +60,8 @@ but vary slightly in hardware recommendations.
 
 #### Trim Levels with ACC
 
-* 2022-23 EV: 2LT trim level with Adaptive Cruise Control package [^7] [^9]
-* 2022-23 EUV: Premier trim level [^6] [^8]
+* 2022–23 EV: 2LT trim with the Adaptive Cruise Control Package [^6] [^8]
+* 2022–23 EUV: Premier or Premier Redline without the Super Cruise package [^7] [^9]
 
 ## Openpilot Hardware List for Bolt
 
@@ -99,43 +79,30 @@ Our recommendation for whether or not to purchase the pedal depends on if your c
 
 #### Non-ACC Bolts
 
-In non-ACC bolts, the Comma Pedal is ***strongly recommended***.
-It allows openpilot to accelerate and decelerate using regen braking and one pedal
-driving mode (the L gear). It is also capable of stop-and-go (the main reason for comma 
-pedal on other vehicles).
+On supported non-ACC Bolts, the Comma Pedal is ***strongly recommended***.
+It lets StarPilot accelerate and use regen braking in One Pedal or L mode.
+Braking and restarting from a stop depend on the vehicle and pedal setup.
 
-The only reasons to not use a pedal interceptor with your non-ACC Bolt are cost or if you 
-are uncomfortable with the idea of installing the pedal interceptor.
-
-Without the pedal, openpilot is *very* limited in its ability to control the speed of your 
-vehicle. It will operate 
-[using a workaround we call "CCLong" or "Redneck ACC"](./volt.md#what-is-redneck-acc-aka-cc-long).
+Without the pedal, supported configurations use
+[CC Long, also called Redneck ACC](./volt.md#what-is-redneck-acc-aka-cc-long)
+to adjust factory cruise. The Bolt CC Long profiles require at least 24 mph to engage.
+Be ready to brake manually.
 
 #### ACC Bolts
 
-In ACC bolts, openpilot can request gas and brake commands through ACC commands. 
-**Without a pedal**, brake commands only use the friction brakes to slow down 
-and regen braking is limited to 10kW (same as coasting in D mode), and it cannot stop-and-go. 
+On supported ACC Bolts, StarPilot can use ACC commands for gas and friction braking. Without a pedal, you may need to use the accelerator or cruise resume to move again from a stop.
 
-**Adding a comma pedal** is now the best of both worlds. StarPilot blends your friction 
-brakes with regen, so an ACC Bolt with a pedal gets **both** full friction braking **and** 
-up to 70 kW of regen, plus stop-and-go support. This removes the old tradeoff where adding 
-a pedal meant giving up openpilot's access to the friction brakes.
-
-For ACC Bolts, a pedal is optional but recommended if you want stronger regen-based 
-slowing and stop-and-go, with no downside to your friction braking.
+A compatible [Comma Pedal](../hardware/comma-pedal.md) is optional. Supported ACC-plus-pedal configurations can blend pedal-based regen with ACC friction braking and can support stop-and-go. Confirm the setup for your vehicle before ordering hardware.
 
 ## Pedal Firmware Flashing
 
 > [!WARNING] Gen 1 Bolts only (2017-2021)
+> If you see a propulsion error with a pedal installed, check the
+> [supplier's guidance](https://docs.innoisle.com/beartech/comma-pedal-description-and-installation-guide)
+> and confirm the firmware for your exact pedal before flashing.
+> Ask in [Discord](https://firestar.link/discord) if you need help identifying the right build.
 
-> [!WARNING]
-> If you purchased your pedal before June 2025 and have not updated the firmware, you will
-> encounter issues with the current version of StarPilot.
-
-The Gen 1 Bolt firmware released in October 2024 ran at twice the speed it should have. This
-was corrected in June 2025. Firmware from before October 2024 will run okay, but the newer
-firmware is better, so it is best to update.
+The downloads below match [BearTech's May 1, 2025 StarPilot build](https://github.com/fraserxiong/panda_firmware/commit/fbe3e17de8d61f3e11d60948cb3e2ba40390263f).
 
 ### Required Resources
 
@@ -144,10 +111,10 @@ firmware is better, so it is best to update.
 * [pedal.bin](../assets/pedal-firmware/gen1-bolt/pedal.bin){:download="pedal.bin"}
 
 > [!NOTE] USB cable requirement
-> USB-C to USB-C does not work for DFU flashing. There must be a USB-A port somewhere in the
-> chain, such as USB-A to USB-C or USB-A to micro-USB. The DFU key/pedal is a USB 2.0 device
-> and does not include USB-C circuitry, so a C-to-C cable often will not provide VBUS or
-> enumerate the device.
+> Use a USB data cable and follow the
+> [supplier's DFU key instructions](https://docs.innoisle.com/beartech/dfu-key-flash-instructions-and-firmware)
+> for your key and pedal. If the computer cannot detect the key, check those connections
+> before attempting a flash.
 
 ### Flashing Instructions
 
@@ -155,25 +122,16 @@ firmware is better, so it is best to update.
 
 ### Other Firmware
 
-The full list of available pedal firmware for other cars is available in
-[TinyBear's GitHub repository](https://github.com/fraserxiong/panda_firmware/tree/master).
+See [TinyBear's firmware branches](https://github.com/fraserxiong/panda_firmware/branches)
+for other pedal builds. Confirm which branch matches your setup.
 
 ## Troubleshooting
 
 ### Propulsion Power Reduced and Regen Not Working
 
-Your Bolt may have had a momentary issue communicating with the throttle pedal,
-causing it to enter a limp mode.
+Your Bolt may have had a momentary issue communicating with the throttle pedal.
 
-1. Turn off the car.
-2. Unplug all connectors for the Comma Pedal.
-3. Breathe hot "sultry" air into the connector ends. This includes the two connectors coming
-out of the Comma Pedal box and the car side, if possible. This is hot breath like fogging up
-a window, not blowing out a candle.
-4. Reconnect all connectors.
-
-If the issue still persists, post in the troubleshooting thread.
-
+With the vehicle off, inspect and reseat the pedal connections using the [hardware supplier’s instructions](https://docs.innoisle.com/beartech/comma-pedal-description-and-installation-guide). If propulsion or pedal faults remain, stop using the setup and [ask for help](../ticketsystem.md).
 
 [^1]: https://cdn.dealereprocess.org/cdn/brochures/chevrolet/2017-bolt.pdf
 [^2]: https://cdn.dealereprocess.org/cdn/brochures/chevrolet/2018-bolt.pdf
