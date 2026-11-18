@@ -5,64 +5,43 @@ description: Learn how StarPilot Sentry Mode captures activity while parked, wit
 
 # Sentry Mode
 
-When your car is parked, Sentry Mode watches for activity around your vehicle and automatically captures events, similar in spirit to Tesla's Sentry Mode, but built for your comma device and managed through [Galaxy](../usage/galaxy.md).
+Sentry Mode captures events when the comma detects sustained movement while your car is
+parked. Set up monitoring and review events through [Galaxy](../usage/galaxy.md).
 
-The best part: it is not running the cameras all day and draining your battery. Sentry stays dormant until something actually happens.
 
 ## How it works
 
-Sentry uses your comma device's **accelerometer** to detect movement while the vehicle is parked. The system sleeps quietly in the background and only wakes up when sustained motion is detected — for example, someone bumping your car or rocking it.
+Sentry uses your comma device's **accelerometer** to detect movement while the vehicle is parked, for example if someone bumps or rocks it.
 
-When that happens, Sentry captures camera images from the event and saves them for you to review later.
+With monitoring enabled, the vehicle off and sufficient power, Sentry arms after 90 seconds of continuous valid conditions. If those conditions are interrupted, it may need to arm again. Motion can create a warning, and further activity can escalate to an alarm.
+
+The comma’s normal parked shutdown and battery cutoff still apply.
 
 ## Galaxy dashboard
 
-Sentry is managed entirely through Galaxy. Open **Cameras & Monitoring → Sentry** to:
+Open **Cameras & Monitoring → Sentry** to turn monitoring on or off, adjust its settings and review events. The event list refreshes while the page is open. Select **Delete** to remove an event or **Delete All** to clear the list.
 
-- Turn Sentry Mode on or off
-- See the current status of the system
-- Review your latest event (with camera captures)
-- Browse past events and delete ones you no longer need
-- Grab a live snapshot from both cameras while parked
-- Send a test capture to confirm everything is working
-
-Events refresh automatically while you have the page open, so you can check in from your phone without touching the comma device.
+For a live parked image, use [Camera Snapshot](./cameras-and-monitoring.md#camera-snapshot).
 
 ## Notifications
 
-When Sentry detects something, you can get alerted through any combination of:
-
-- **Browser push notifications** — enable directly from the Sentry page in Galaxy
-- **ntfy** — paste your ntfy topic URL for phone notifications
-- **Discord** — paste a Discord webhook URL (or any compatible webhook)
-
-Use **Send test notification** in Galaxy to confirm your setup before you need it.
+The Sentry page supports **Browser push**, **Discord**, **General webhook**, **ntfy** and **Galaxy App Alerts** where available. Browser push requires HTTPS and a compatible browser. App alerts require permission on the phone and a configured push relay. Use the test button for each channel you set up.
 
 > [!TIP] iPhone users
 > Add Galaxy to your Home Screen as a web app before enabling browser notifications. iOS requires a Home Screen web app for web push to work.
 
 ## Settings
 
-All Sentry settings live on the Galaxy Sentry page — there is nothing extra to configure on the comma device itself.
-
 | Setting | What it does |
 | --- | --- |
-| **Enable Sentry Mode** | Turn parked monitoring on or off |
+| **Use parked motion monitoring** | Turn parked monitoring on or off |
 | **Motion sensitivity** | How easily movement triggers Sentry. Lower values catch smaller bumps; higher values require stronger motion |
-| **Warning persistence** | How long movement must continue before the first alert fires. Useful for filtering out brief vibrations (wind, passing trucks, etc.) |
-| **Webhook URL** | Optional Discord or custom webhook for alerts |
-| **ntfy URL** | Optional ntfy topic for phone alerts |
+| **Warning persistence** | How much motion evidence triggers the first warning. Higher values help filter brief vibrations. |
 
 Start with the defaults and adjust sensitivity if you get too many false alerts or not enough real ones.
 
 ## What gets captured
 
-When Sentry triggers, it saves camera images from the event along with a timestamp. You can view them in Galaxy immediately or come back to them later from the event history.
+Galaxy lists **Motion**, **Alarm**, **Selfie** and **Low battery** events with timestamps. Motion and alarm events can include road and cabin images when the capture succeeds. Low battery entries show the measured battery voltage and the cutoff.
 
-Events stay on your device until you delete them.
-
-> [!NOTE] Power-off alerts
-> If your comma device shuts down while Sentry is enabled, you may receive a power-off alert. These do not include camera images because the device is already shutting down.
-
-> [!IMPORTANT] Sentry is for when you are parked
-> Sentry only runs while your vehicle is off-road (not actively driving). It is a parking security feature, not something that runs during normal openpilot operation.
+Sentry stores up to 512 events. When storage is full, new events can’t be saved until you clear space. Use a supported network connection to view event images. Bluetooth-only access can show event details.

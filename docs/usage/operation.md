@@ -7,45 +7,30 @@ description: Learn how to use StarPilot driver assistance, including engagement,
 
 ## Capabilities
 
-Openpilot is driver assistance, not self-driving.
-It performs best on highways, providing a (mostly) hands-free experience.
+Openpilot is driver assistance, not self-driving. It performs best on highways.
 
-It performs adaptive cruise control and automated lane centering. 
-It will stop at most traffic lights and rolling stop for some stop signs.
-It can handle most curves, especially at the recommended curve speed limit. 
-It will attempt to do low-speed turns (be prepared to take manual control), 
-but is limited by available steering torque, which depends on the vehicle.
+On supported configurations, it provides adaptive cruise control and automated lane centering.
+Traffic-light and stop-sign behavior depends on the driving mode, planner, Enhanced Stops and
+vehicle. Curves and low-speed turns are limited by the vehicle’s steering capabilities.
 
-It is not full self-driving. 
-It requires you to pay attention using a driver monitoring camera instead of wheel nags.
-
-It is actively developed and continues to improve (eg. the rolling stops),
-but this is a snapshot of what it currently does.
+You must stay attentive and ready to steer or brake. Driver monitoring helps check your attention.
 
 ## Basic Operation
 
-1. Pay attention at all times. You are responsible for your vehicle's operation.
-2. You can manually override or disengage openpilot at any time. 
-Steering, throttle, and brakes can be used at any time.
-3. To engage openpilot (ie. to make it control your speed and steering), 
-engage your CC system as normal by turning CC ON, then pressing SET/-. 
-4. To disengage openpilot, it should be the same as your CC system. 
-Press CC cancel, CC OFF, or hit the brakes.
-5. To adjust openpilot max speed, use the CC +/- buttons. 
-Depending on the car, your dash may not reflect the max speed, 
-so instead use the openpilot UI's max speed shown.
+1. Pay attention at all times. You are responsible for your vehicle’s operation.
+1. You can steer, accelerate, brake, or disengage openpilot at any time.
+1. Use your vehicle’s engagement controls; steering and speed can engage separately.
+1. Button and pedal behavior depends on the vehicle and AOL settings. Manual steering or accelerator input may override assistance without disengaging it.
+1. To adjust openpilot max speed, use the CC +/- buttons. Depending on the car, your dash may not reflect the max speed, so instead use the openpilot UI’s max speed shown.
 
 ## Always On Lateral
 
-With Always on Lateral (AOL), steering (lane centering) stays active at all times, 
-even when Cruise Control (CC) is disengaged or pressing throttle/brake pedal. 
-This does not change the manual override safety protocols, 
-you can always override it by manually steering.
+With Always On Lateral (AOL), steering assistance can remain active when cruise speed control
+is disengaged. AOL can be armed (ready to assist), active or paused. Pedal and Cancel/OFF behavior
+depends on the vehicle and settings. You can still override steering manually. Use the controls
+for your vehicle to enable or disable AOL.
 
-To enable, turn the CC system on. 
-To disable, turn CC system off.
-
-To permanently disable, [see settings](./settings.md#always-on-lateral)
+To permanently disable, [see settings](./settings.md#always-on-lateral).
 
 ## Lane Changes
 
@@ -57,57 +42,79 @@ To permanently disable, [see settings](./settings.md#always-on-lateral)
 > Openpilot will attempt to use your blind spot monitors on supported cars, 
 > but you should always check yourself.
 
+Lane-change assistance depends on the minimum-speed setting and vehicle capabilities.
+
 > [!WARNING] Nudge-less lane changes
-> Step 3 can be skipped if nudge-less lane changes are enabled in settings.
+> Step 3 can be skipped when **Automatic Lane Changes** is enabled, after the configured delay
+> and when lane and blindspot checks allow. If **Require Cruise for Automatic Lane Changes**
+> is enabled, engage factory cruise or StarPilot speed control before signaling. Narrower or
+> uncertain lanes still require a nudge.
+>
 > Be careful if you use this non-recommended setting.
 
 ## UI Basics
 
 ### Border Colors
 
-1. None - openpilot is not engaged
-2. Blue - openpilot is controlling only steering (AOL)
-3. Green - openpilot is engaged in chill mode
-4. Grey - openpilot is engaged, but overridden (manually steering or pressing throttle pedal)
-5. Orange - openpilot is engaged, [CEM](#conditional-experimental-mode) is active
-6. Red - openpilot is engaged, personality set to Traffic Mode
-7. Purple - switchback mode is enabled, which limits the frequency of "Steer limit exceeded" warnings
+| Color | Meaning |
+|---|---|
+| Dark blue | No active StarPilot steering or speed assistance |
+| Dark teal | AOL armed and waiting to assist |
+| Teal | Steering assistance without active speed control |
+| Pink | StarPilot speed control only |
+| Green | Steering and speed assistance together, or steering with factory cruise |
+| Yellow | Manually selected Chill mode |
+| Orange | Experimental or stop-related state |
+| Red | Traffic Mode |
+| Purple | Switchback Mode |
+| Grey | Manual steering or speed override |
+
+Mode and override colors can take precedence over the steering/speed colors. Alerts and
+optional turn-signal or blindspot edge indicators can also change the displayed border.
 
 ### Max Speed
 
-Your max speed is shown in the top left of the UI.
+Your cruise SET speed is shown in the driving UI; its position depends on the layout. SET is
+the driver’s cruise ceiling. Speed-limit control, curve-speed control or the active planner
+can request a lower speed.
 
 ## Speed Limit Controller 
 
-The Speed Limit Controller (SLC) will use map data from [OpenStreetMap (OSM)](https://openstreetmap.org) 
-to limit your max speed based upon speed limit data for your vehicle location.
+The Speed Limit Controller (SLC) can use map data, dashboard speed limits or camera-detected
+signs, depending on your configuration.
 
-See the [Speed Limit Controller guide](../exclusive/speed-limit-controller.md) for source, offset, confirmation, fallback, and override settings.
+When StarPilot controls speed, SLC can limit the target to the accepted speed limit plus your
+configured offset, up to your cruise SET speed. Accepting a limit normally does not change SET.
 
-Speed limit for your current location is shown below your max speed. 
-The active +offset shown is how far above the speed limit it will allow.
-Offsets are configurable in settings.
+The driving display shows the speed-limit sign and optional offset. Status text explains
+whether SLC is using the speed limit, using SET, awaiting confirmation or being overridden.
 
-If your max speed is *red*, SLC is limiting the speed to the speed limit + offset.
-
-If your max speed is *orange*, your max speed is still active but approaching the SLC limit.
+See the [Speed Limit Controller guide](../exclusive/speed-limit-controller.md) for source, offset, confirmation, and override settings.
 
 ### Submitting New Speed Limits
 
-If you see an incorrect or missing speed limit, go to OSM and submit an edit. 
-Your openpilot speed limit data will update in about a week.
+If you see an incorrect or missing map-based speed limit, submit an edit to
+[OpenStreetMap](https://openstreetmap.org). The correction reaches StarPilot after it
+appears in newer map data and your device uses that coverage. See
+[Speed Limit Maps](../exclusive/navigation.md#offline-maps) to download updated coverage
+for your region.
 
 ### Vision Speed Limit Detection
 
 StarPilot can read speed limit signs with the road camera as an SLC source. See the [Vision speed limits guide](../exclusive/speed-limit-controller.md#vision-speed-limits) for setup and accuracy guidance.
+
+In Galaxy, open **Toggles → Longitudinal (Speed & Following) → Speed Limit Controller**.
+Select **Vision** under **Primary source**, **Secondary source** or **Third source**, where available.
+
+**Show speed limit signs** controls the display. Enable **Speed Limit Controller** for
+accepted limits to affect speed on supported configurations.
 
 #### Help us improve it
 
 The model gets better with more real-world driving data. If you'd like to help:
 
 1. Select **Vision** as a speed-limit source in **Toggles → Longitudinal (Speed & Following) → Speed Limit Controller**.
-2. Under **Maps**, select the regions you'll be driving in, 
-then **Save Selection** and **Download Maps**.
+2. If you also use **Maps** as a source, install map data for your region.
 3. Drive as normal.
 4. In [Comma Connect](https://connect.comma.ai), open the route, 
 choose **Files -> Upload All Files**, then under **More Info** enable **Public Access** 
@@ -124,68 +131,59 @@ and copy the route ID.
 
 ![curve speed controller icon](../assets/images/curve_speed.png){: style="height:50px;width:50px"} 
 
-The Curve Speed Controller (CSC) will limit your max speed in order to match how you take curves.
-If you see the curve speed icon next to your max speed, 
-CSC is overriding your max speed to the speed shown. 
+The Curve Speed Controller (CSC) uses learned cornering preferences to reduce speed for curves
+when StarPilot controls acceleration and braking on supported configurations.
 
-If you think it is going too fast or slow for the curve, 
-manually speed up or slow down by overriding throttle/brake 
-and it will learn to match that speed over time.
+With **Show Curve status** enabled, the display can show **CURVE** with its speed target,
+or **CURVE LEARNING** with learning progress.
+
+With CSC enabled on a supported configuration, it can learn on qualifying curves while you control speed yourself, with no lead vehicle tracked and no turn signal active. Qualifying accelerator or brake feedback during a CSC-controlled curve can also adjust saved preferences.
+
+## Longitudinal Planner and Enhanced Stops
+
+**Use StarPilot Longitudinal Planner** selects the planner for the next drive.
+
+On supported configurations, **Enhanced Stops** improves stopping behavior at traffic lights
+and enables stopping at detected stop signs. Release behavior depends on the stop and the vehicle. If Enhanced Stops is holding the vehicle, press the accelerator to continue when it’s safe.
+
+On builds that expose **Always Hold Enhanced Stops** in developer settings, an acquired hold
+waits for Resume or accelerator input while assistance is active and the required inputs
+are valid. Disengaging assistance or losing required data can end the hold. Be ready to
+hold the vehicle with the brake. This option applies on the next drive.
 
 ## Experimental Mode
 
-Normal openpilot operation is known as *chill mode*.
+Driving Mode offers **Automatic**, **Chill** and **Experimental**.
 
-Experimental mode, also known as end-to-end longitudinal (e2e long), 
-gives the driving model full control of the gas/brake. 
-Experimental mode does not affect steering.
-It is not recommended at the moment. 
-It may brake or accelerate erratically.
+Experimental mode, also known as end-to-end longitudinal (e2e long), lets the driving model
+influence acceleration and braking on supported configurations. The active planner and
+vehicle limits still apply.
 
-One day, driving models will be good enough to stay in experimental mode full time, 
-but for now we recommend keeping it disabled.
+Behavior varies with the driving model and conditions. It may brake or accelerate
+unexpectedly; stay attentive and ready to take control.
 
-## Conditional Experimental Mode 
+## Conditional Experimental Mode
 
-Conditional Experimental Mode (CEM) automatically switches into experimental mode 
-under certain conditions, like approaching a traffic light or stop sign. 
-Experimental mode can behave strangely at times, 
-so we conditionally swap into it for conditions we know the driving model is better at.
-
-The condition that caused the mode swap is indicated by a widget. 
+Conditional Experimental Mode (CEM) is presented as **Automatic** in Driving Mode. It switches
+between Chill and Experimental using your saved conditions. Configure these under
+**Automatic conditions**.
 
 ### CEM Widgets and Meaning
 
-* Couch - Chill/normal mode
-* Traffic Light - Traffic lights or stop signs
-* Car - (Slower or stopped) lead car
-* Speedometer - CEM activated by being below speed threshold
-* Steering wheel - Turn signal is on, speed is below threshold, and no detected lane
-* Map - Navigation
+The on-screen indicator shows the reason for the current mode choice, such as speed, a lead
+vehicle, curves, a turn signal or a stop condition.
 
 ## Conditional Chill Mode
 
-Conditional Chill Mode (CCM) is essentially the inverse of CEM:
-
-* **Conditional Experimental Mode (CEM)** — keeps you in chill mode by default, 
-and automatically switches *to* experimental mode when set conditions are met, 
-so the model can handle challenging situations with smarter decision making.
-* **Conditional Chill Mode (CCM)** — keeps experimental mode on by default, 
-and temporarily switches *to* chill mode in simple cruising scenes 
-where holding speed is usually better.
-
-The idea: experimental mode is better at stopping and recognizing the key parts of a 
-complex scene, so why not leave it on as long as it's holding speed? 
-CCM keeps experimental on unless it hits very specific conditions — including a configurable 
-maximum "under set speed", which tells the model "you're fired" 
-and drops back to chill mode if it's bleeding off too much speed.
-
-Like CEM, an on-screen indicator shows when CCM is active. 
-Settings for CCM are available in both the C3 UI and [the Galaxy](./galaxy.md).
-
-> [!IMPORTANT] CCM and CEM are mutually exclusive
-> Only one can be active at a time. If both are enabled, **CEM takes precedence**.
+Older saved Conditional Chill Mode (CCM) selections are handled as Automatic. Current settings
+use **Driving Mode** and **Automatic conditions**, rather than a separate CCM editor.
 
 ## Navigation
 
-Navigation displays a route and can help the driving model prepare for turns. It does not drive to the destination for you. Stay ready to steer, especially at intersections and exits. See [Navigation & Maps](../exclusive/navigation.md) for setup.
+Navigation displays a route and can help the driving model prepare for turns. It does not
+drive to the destination for you. Stay ready to steer, especially at intersections and exits.
+See [Navigation & Maps](../exclusive/navigation.md) for setup.
+
+On supported configurations, **Turn Signal Guidance** can help the model choose a turning
+path at low speed even without a route. Steering assistance must be active. See
+[Lateral Tuning](./settings.md#lateral-tuning) for the setting.

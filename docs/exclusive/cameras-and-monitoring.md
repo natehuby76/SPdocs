@@ -11,6 +11,9 @@ In [Galaxy](../usage/galaxy.md), **Cameras & Monitoring** contains the blind spo
 
 On the main **Cameras & Monitoring** page, turn off the vehicle, choose **Cabin**, **Wide road**, or **Road**, then tap **Take snapshot**. Use **Clear** to remove the preview. These snapshots are temporary and are not saved as Sentry events.
 
+Use Galaxy in a browser over a local network or through your signed-in remote link.
+Camera images require a network connection.
+
 ## V-ASM: adjacent spot monitoring
 
 V-ASM adds visual spot warnings alongside factory blind spot monitoring, where available. It does not confirm that a lane is clear or change vehicle controls. Always check mirrors and look over your shoulder before changing lanes.
@@ -30,7 +33,7 @@ The cabin snapshot stays in your browser and is not uploaded by the region edito
 
 **Blind Spot Camera and Preview** shows a close-up of a cabin side window on the driving screen. It can appear when you signal, when the car reports a blind spot warning, or when V-ASM reports a visual spot warning. It is a view for the driver, not a second detection model.
 
-In Galaxy, open **Cameras & Monitoring → Blind Spot Camera and Preview** while parked. Take a cabin snapshot, choose **Left camera** or **Right camera**, and place its circular crop over the matching side window. Adjust **Crop size**, then **Save** and confirm. Turn on **Use blind spot camera** and choose **Show on turn signal**, **Show on blind spot warning**, or both. The warning option responds to factory blind spot warnings and to V-ASM warnings when V-ASM is configured and enabled. You can position the onroad camera views with the layout editor.
+In Galaxy, open **Cameras & Monitoring → Blind Spot Camera and Preview** while parked. Take a cabin snapshot, choose **Left camera** or **Right camera**, and place its circular crop over the matching side window. Adjust **Crop size**, then **Save** and confirm. Turn on **Use blind spot camera** and choose **Show on turn signal**, **Show on blind spot warning**, or both. The warning option responds to factory blind spot warnings and to V-ASM warnings when V-ASM is configured and enabled. Select **Position side cameras** to open the layout editor and place the previews on the driving screen.
 
 PiP's circular crop controls what appears on screen. V-ASM's window regions control what its model analyzes; configure them separately. PiP also needs a live cabin camera and a crop for the side being shown.
 

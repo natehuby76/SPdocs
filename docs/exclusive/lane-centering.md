@@ -15,39 +15,35 @@ When both lane lines are detected clearly and confidently, StarPilot compares th
 
 If they differ, StarPilot applies a small, smooth correction toward the lane center while still allowing the E2E model to make driving decisions.
 
-If the lane lines become unreliable, the lane width appears abnormal, you're changing lanes, or other required conditions aren't met, StarPilot automatically falls back to the normal E2E path.
+With one reliable lane line, StarPilot can sometimes adjust the model path to maintain clearance using other reliable geometry, such as a road edge. If neither path correction has enough evidence, or a lane change or another condition prevents correction, StarPilot falls back to the normal E2E path.
 
 ## How Can I Tell Which Direction Lane Centering Is Correcting?
 
-When Lane Centering applies a correction, the lane line on the side it is pulling toward turns blue. This provides a visual indication of the direction Lane Centering is guiding the vehicle.
+The lane line on the side StarPilot is pulling toward can change color when a correction is active. The indicator depends on the driving display and your color settings.
 
 ## How Do I Enable Lane Centering?
 
-Lane Centering is enabled through StarPilot Galaxy.
+In Galaxy, open **Toggles → Lateral (Steering) → Lane Centering**. You can also search for **Lane Centering** in Toggles. Availability depends on the vehicle and configuration.
 
-1. Open Galaxy in your browser. 
-2. Open Toggles.
-3. Go to the Developer section.
-4. Find Lane Centering and enable it.
+## Lane offset
 
-> [!TIP]
-> If you're having trouble finding the setting, in Galaxy's Toggle page, use the Search bar and search for `Lane Centering`.
+<span id="what-is-lane-center-offset"></span>
 
-Once enabled, you can also configure how Lane Centering behaves.
+**Lane offset** lets you adjust the preferred position within the lane, for example slightly closer to the right side.
 
-## What Is Lane Center Offset?
+## Model path preference
 
-Lane Center Offset allows you to fine-tune where the vehicle sits within the lane.
+<span id="what-is-e2e-authority"></span>
 
-For example, if you prefer the vehicle to drive slightly closer to the right side of the lane rather than directly in the center, you can adjust the offset to do so.
+Higher **Model path preference** lets a confident model path reduce the centering correction when it differs from the lane center.
 
-## What Is E2E Authority?
+## Lane Centering Strength
 
-E2E Authority controls how much influence the E2E model has over Lane Centering.
+**Lane Centering Strength** adjusts the amount of correction. Use 100% for the normal correction. Lower values reduce it and higher values strengthen it.
 
-Giving E2E more authority allows the model to deviate further from the center when it believes it should, such as when navigating around potholes or cyclists.
+## Pause on signal
 
-Increasing Lane Centering gives you a more traditional centered driving feel.
+**Pause on signal** temporarily pauses the centering correction when the turn signal is active.
 
 > [!IMPORTANT]
-> Lane Centering does not prevent the E2E model from controlling the vehicle. It simply biases the predicted path toward the detected center of the lane when conditions allow.
+> Lane Centering works alongside the driving model and falls back to its normal path when required conditions aren’t met.
