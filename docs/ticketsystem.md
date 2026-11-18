@@ -7,6 +7,8 @@ description: Report StarPilot bugs, vehicle tuning issues, and feature requests 
 
 StarPilot thrives on the feedback and responsiveness of our community. If you are experiencing an issue, please open a ticket and share what you are seeing. The more people submitting feedback, the better your car (and everyone else's) can drive.
 
+For a StarPilot BT connection or app issue on iPhone, use [Submit logs through Discord](./usage/companion-apps/ios.md#submit-logs-through-discord) in the app. Some Galaxy Android builds also offer [Discord reporting](./usage/companion-apps/android.md#report-a-problem-through-discord).
+
 ## What is it?
 
 The Discord ticket system is the main way to report problems and request support for StarPilot. Create a ticket if your car meets Comma's requirements but is not yet supported by StarPilot, if you experience ping-ponging or steering wobble, or if you encounter another issue that requires investigation. For basic configuration questions, ask in the appropriate public support channel instead. Firestar will review your ticket when available and may release an update to address the issue.

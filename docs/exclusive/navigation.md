@@ -37,7 +37,7 @@ Under **Setup → Position**, choose:
 - **Comma and car only:** does not use phone GPS.
 - **Phone first:** uses a recent phone fix, otherwise comma or car GPS.
 
-Enable location sharing in a supported companion app to supply phone GPS. Updates reach the comma over Bluetooth or local Wi-Fi.
+Enable location sharing in a [supported companion app](../usage/companion-apps/index.md) to supply phone GPS. Updates reach the comma over Bluetooth or local Wi-Fi.
 
 ## Offline Maps
 

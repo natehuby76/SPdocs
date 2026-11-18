@@ -14,7 +14,11 @@ Read [Operation](./operation.md) for driving behavior.
 
 ## Access Galaxy
 
+### Companion apps
+
 The iOS and Android apps can connect over Galaxy Wi-Fi or a shared network. Bluetooth supports basic controls. Recordings and replay require Galaxy Wi-Fi or LAN.
+
+See [Companion Apps](./companion-apps/index.md) for downloads, pairing, source repositories and beta access.
 
 ### Local access
 

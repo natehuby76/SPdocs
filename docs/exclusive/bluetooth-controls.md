@@ -34,6 +34,8 @@ Use local Galaxy with the vehicle off and open **Controller Buttons**.
 4. Use **Test buttons (20s)** to check that Galaxy sees the button press without running
    its action.
 
+To connect a phone using **Pair phone**, see [Companion Apps](../usage/companion-apps/index.md).
+
 ## Bluetooth Controller Examples
 
 Steering-wheel-mounted Bluetooth controls are one option for cars that do not give StarPilot

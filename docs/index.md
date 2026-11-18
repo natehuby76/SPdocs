@@ -37,6 +37,8 @@ StarPilot is a standalone, community-driven [openpilot](https://github.com/comma
 
 [Galaxy & features](./usage/galaxy.md) explains its Home, Routes, and every tool. For setup details, see [Models](./usage/model-manager.md), [Navigation & Maps](./exclusive/navigation.md), [StarPort](./exclusive/starport.md), [Cameras & Monitoring](./exclusive/cameras-and-monitoring.md), [Sentry Mode](./exclusive/sentry-mode.md), and [Bluetooth](./exclusive/bluetooth-controls.md).
 
+For phone setup, see [Companion Apps](./usage/companion-apps/index.md).
+
 ## Toggles
 
 [Settings](./usage/settings.md) explains the main controls. [Lane Centering](./exclusive/lane-centering.md) and [Speed Limit Controller](./exclusive/speed-limit-controller.md) have dedicated guides.

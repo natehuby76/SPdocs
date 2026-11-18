@@ -17,6 +17,10 @@ nav:
           - Operation: usage/operation.md
           - Settings: usage/settings.md
           - Galaxy & Features: usage/galaxy.md
+          - Companion Apps:
+              - Overview: usage/companion-apps/index.md
+              - iOS: usage/companion-apps/ios.md
+              - Android: usage/companion-apps/android.md
       - Tools:
           - Models: usage/model-manager.md
           - Navigation: exclusive/navigation.md

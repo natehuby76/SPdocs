@@ -77,7 +77,7 @@ If it keeps happening, restart the car or adapter.
 
 ### Play music from your phone
 
-1. In Galaxy, open **Bluetooth → Pair phone**. Follow any media-audio pairing prompts.
+1. In Galaxy, open **Bluetooth → Pair phone** or use the [companion app](../usage/companion-apps/index.md). Follow any media-audio pairing prompts.
 2. Open **StarPort → Spotify and Phone Audio**. Choose **Phone over Bluetooth**, select your phone, and turn on **Phone Audio**.
 3. On your phone, select the comma as the media audio output and play music. Calls and microphone audio stay on the phone.
 
