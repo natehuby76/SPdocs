@@ -438,6 +438,15 @@
     }
   }
 
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const button = event.target;
+    if (!(button instanceof HTMLLabelElement) || !button.matches(".md-header label[role=button]")) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (!event.repeat) button.click();
+  }, true);
+
   document.addEventListener("change", (event) => {
     if (event.target instanceof HTMLSelectElement && event.target.id === "theme-selector") {
       activateTheme(event.target.value);
