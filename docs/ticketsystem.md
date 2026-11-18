@@ -1,6 +1,6 @@
 ---
 title: Support Tickets & Bug Reports
-description: Report StarPilot bugs, vehicle tuning issues, and feature requests through Discord. Learn which ticket to open and how to test development fixes.
+description: Report StarPilot bugs, vehicle tuning issues, and feature requests through Discord. Learn which ticket to open and how to try fixes on Testing.
 ---
 
 # Ticket System
@@ -15,7 +15,7 @@ The Discord ticket system is the main way to report problems and request support
 
 You must first be a member of the [StarPilot Discord server](https://discord.com/invite/b8EzGp5RtE).
 
-Potential fixes are first released on the testing branch. If you are using the Starpilot branch, you will need to [switch to Dom](#how-do-i-switch-from-the-starpilot-branch-to-dom) to test the update.
+If a maintainer asks you to test a fix, follow the [branch-switching guide](#how-do-i-switch-to-the-testing-branch) and report the version you tested.
 
 ## How do I create a ticket?
 
@@ -25,7 +25,14 @@ Potential fixes are first released on the testing branch. If you are using the S
 
     <img src="../assets/images/ticket_buttons.jpg" alt="Ticket Buttons" width="300">
 
-4. Get your [route information and upload your logs](./faq.md#how-do-i-upload-logs-for-troubleshooting). Add that information to the form, describe the problem or requested feature in as much detail as possible, and select Submit.
+4. Fill out the form, then select **Submit**. For an issue, include:
+
+    - Your comma device, vehicle year and trim, and installed hardware
+    - The branch and software version you tested
+    - The approximate time, route or bookmark, and any [relevant logs](./faq.md#how-do-i-upload-logs-for-troubleshooting)
+    - What you expected and what actually happened
+
+    Choose whether to make a route public before sharing it.
 
 ### Which button should I choose?
 
@@ -60,12 +67,14 @@ Potential fixes are first released on the testing branch. If you are using the S
 > [!Tip]
 > If you can reproduce the issue, open a bookmark on your device shortly before it occurs and close the bookmark shortly afterward. Include the bookmark information in your ticket to help Firestar locate and investigate the issue.
 
-## How do I switch from the Starpilot branch to testing?
+## How do I switch to the testing branch?
 
-Switch to the `testing` branch while parked using [the software guide](./software/starpilot.md#changing-branches). You do not need to reinstall StarPilot.
+<span id="how-do-i-switch-from-the-starpilot-branch-to-dom"></span>
+<span id="how-do-i-switch-from-the-starpilot-branch-to-testing"></span>
+<span id="through-your-comma-device"></span>
+<span id="through-galaxy"></span>
 
-> [!Tip]
-> If you do not want to remain on testing, wait until the fix is included in the next StarPilot release. You can then follow the same process to switch back to the Starpilot branch.
+Park and turn off the vehicle. Keep the comma powered and online, then follow [Changing branches](./software/starpilot.md#changing-branches) and choose **Testing** in Galaxy. Once the fix is in Stable, follow the same steps and choose **Stable** to switch back.
 
 ## What do the colored circles on my ticket mean?
 
@@ -75,7 +84,7 @@ Each colored circle represents the current status of your ticket.
 | --- | --- | --- |
 | 🟠 | Your ticket is new and has been submitted. | Wait for Firestar to review it. |
 | ⚪ | Firestar has reviewed your ticket, but an update is not ready yet. The circle will turn purple when the update is ready to test. | Please be patient and wait for the circle to turn purple. |
-| 🟣 | Your ticket has been reviewed and a potential fix is ready. | Update Dom and test the fix. If the problem remains, submit a new route and updated logs. |
+| 🟣 | Your ticket has been reviewed and a potential fix is ready. | Update to the requested testing build and test the fix. If the problem remains, submit a new route and updated logs. |
 | 🔴 | Your ticket was sent back for further investigation. | Wait for the ticket to return to purple status. |
 | 🟢 | You closed the ticket yourself. | No further action is required. |
 | 🔵 | A staff member or the bot closed your ticket. | No further action is required. |

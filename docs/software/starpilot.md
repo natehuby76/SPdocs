@@ -1,16 +1,16 @@
 ---
 title: Install StarPilot on comma 3, 3X & 4
-description: Install StarPilot on comma 3, 3X, or 4 with the current installer values and planned channel names, device setup steps, and branch switching instructions.
+description: Install StarPilot on comma 3, 3X, or 4 with the stable and testing installer values, device setup steps, and branch switching instructions.
 ---
 
 # Installing StarPilot
 
-The StarPilot install links are:
+Choose the StarPilot installer for your branch.
 
-* Stable: `starpilothq/StarPilot`
-* Testing: `starpilothq/testing`
+* **Stable** (recommended) — `starpilothq/stable`
+* **Testing** — `starpilothq/testing`
 
-These are the current working links. The old `starpilothq/Dom` link still works: its first startup switches the installed branch and update target to `testing`, including fresh installs made later.
+If StarPilot is already installed, see [Changing branches](#changing-branches).
 
 If your comma is new or already on the setup screen, skip to the instructions for your device.
 
@@ -25,7 +25,7 @@ If openpilot or another fork is already installed:
 
 1. Choose **Custom Software** on the setup screen.
 1. Connect to Wi-Fi when prompted.
-1. Enter `starpilothq/StarPilot` for Stable or `starpilothq/testing` for Testing.
+1. Enter `starpilothq/stable` for Stable or `starpilothq/testing` for Testing.
 1. Start the installation and let it finish. The comma may restart more than once.
 
 Do not unplug the comma while it is installing or updating AGNOS.
@@ -34,7 +34,7 @@ Do not unplug the comma while it is installing or updating AGNOS.
 
 1. Connect to Wi-Fi on the setup screen.
 1. Choose to install custom software.
-1. Enter `starpilothq/StarPilot` for Stable or `starpilothq/testing` for Testing.
+1. Enter `starpilothq/stable` for Stable or `starpilothq/testing` for Testing.
 1. Start the installation and wait for the comma to restart.
 
 You can power the comma inside your home with a suitable USB-C power adapter if the Wi-Fi
@@ -44,9 +44,12 @@ signal in your car is poor.
 
 Use this only if the comma is stuck and you cannot uninstall through **Settings > Software**.
 
+A factory reset erases stored content and settings on the comma. Download any recordings
+or logs you need first, if the device is still accessible.
+
 1. Unplug the comma and wait 60 seconds.
 1. Plug it back in and immediately tap the screen repeatedly until the reset prompt appears.
-1. Reset the device. On Comma 4, swipe to confirm. On Comma 3/3X, tap to confirm.
+1. On comma 4, tap **reset & erase**, then swipe to confirm. On comma 3/3X, follow the **Confirm** prompts.
 1. After it returns to setup, follow the instructions above for your device.
 
 > [!NOTE] Recommended settings page
@@ -65,60 +68,90 @@ Use this only if the comma is stuck and you cannot uninstall through **Settings 
 
 ## Branches
 
-StarPilot currently has two main channels:
+StarPilot has two main branches you can install:
 
 | Branch | Purpose | Stability |
 | --- | --- | --- |
-| `StarPilot` | The default branch. Use this unless you have a specific reason not to. | Stable. Recommended for everyone. |
-| `testing` | The active testing branch. Changes are made to it regularly and it may break at any time. Commonly used by users who want to test new features or fixes that are still in development. | Unstable. Use at your own risk. |
+| `stable` | The standard release branch. | Recommended for most users. |
+| `testing` | The active testing branch for new features and fixes. | May introduce bugs. |
 
 ### Channel names and the one-time migration
 
-The testing channel is now `testing`, formerly `Dom`. `Dom` remains a compatibility
-bridge for existing devices and old install links; future updates and development
-continue on `testing`.
+Older builds may show `StarPilot` for Stable and `Dom` for Testing. The Dom migration
+changes the installed branch and update target to `testing` at startup. Fresh installs
+made through the old Dom link do the same while the compatibility bridge is available.
 
-Stable is still named `StarPilot`. Its separate move to `stable` and the GitHub
-default-branch change have not happened yet. `dev` is reserved for the maintainer’s
-personal work, not a recommended user channel.
+The migration keeps the installed software version, settings, recordings, downloaded
+models, calibration and Galaxy pairing. It can finish offline once the update has
+downloaded. Later branch changes are respected.
 
-The migration release keeps the installed software version and settings. It changes the
-local branch and update target once; it does not install the rebase, erase recordings,
-remove models, reset calibration, or unpair Galaxy. A later deliberate branch switch
-is respected and does not run a chain of renames.
-
-Update Dom normally while parked. After the migration release starts, check that
-Galaxy’s installed branch and update target both show `testing`. Devices can complete
-this local rename without a network connection after downloading that release.
-
-If your comma was offline during the rollout, **check the target before updating**.
-GitHub does not redirect Git branch names or raw-file installer URLs. If an old branch
-has since been reused for different software, do not update it expecting the old
-channel. Select `stable` or `testing` explicitly in Galaxy. If the old updater cannot
-switch, use the pinned migration release provided in the rollout announcement or
-contact support; do not factory-reset or delete your recordings as a first step.
+To update an older Dom build, park and install the migration update. After the comma
+restarts, check that Galaxy shows `testing` for both the installed branch and update
+target. If your comma missed the rollout, check the target in Galaxy before updating.
+Choose **Stable** or **Testing** explicitly. On older builds, look under
+**Other branches…** if the branch is missing from the main list. If the updater cannot
+switch, use the pinned migration release from the rollout announcement or ask in
+[Discord](https://firestar.link/discord) before resetting the device.
 
 ### Changing branches
 
-#### Using [Galaxy](../usage/galaxy.md)
+#### Using [Galaxy](../usage/galaxy.md) (Recommended)
 
-While parked, open **Tools → System Tools → Software & Updates**. Choose a target **Branch**, press **Update**, then confirm **Update & restart**. **Download only** prepares an update without restarting.
+<span id="using-galaxy"></span>
+
+Park and turn off the vehicle; keep the comma powered and online.
+In Galaxy, open **Tools → System Tools → Software & Updates**.
+Under **Advanced options → Branch**, choose **Stable** or **Testing**.
+
+To update to the latest version of a branch:
+
+1. Select **Update**. Confirm **Update & restart**, or **Restart & install** if the update
+   is already prepared.
+1. If an update was installed, wait for the device to restart and Galaxy to reconnect.
+   An up-to-date branch needs no restart.
+
+If Galaxy cannot verify the update after five minutes, check the connection and the
+installed version before trying again.
+
+To choose a specific version instead:
+
+1. Select a version from the list.
+1. Choose **Install selected version** or **Download and install selected version**.
+1. Confirm the restart and wait for Galaxy to reconnect.
+
+Choosing a branch or version does not install it. **Download only** prepares a version for
+later installation.
 
 #### Direct on device
 
+With the vehicle off and comma powered and online, open **Settings → Software**.
+If **Target Branch** is shown, select `stable` or `testing`. Otherwise, choose the branch
+in Galaxy.
+
 On the **Comma 3/3X** interface:
 
-1. Go to **Settings**.
-1. Open **Software**.
-1. Tap **Target Branch** and pick the branch.
-1. Click **Select**.
-1. Select **Yes** to download.
+1. Use **CHECK**, then **DOWNLOAD** when offered.
 1. Wait for the download to finish.
-1. Install the update.
+1. Select **Install Update → INSTALL** and wait for the device to restart.
 
-On the **Comma 4**:
+On the **Comma 4** interface:
 
-1. Go to **Software**.
-1. Turn on **Show advanced options**.
-1. Select the branch.
-1. Select **Switch + Update**.
+1. Use **check for update**, then **download update** when offered.
+1. Wait for the download to finish.
+1. Select **install now** and wait for the device to restart.
+
+### Automatic updates
+
+**Download updates automatically** prepares updates while the vehicle is off.
+**Install updates automatically** restarts the device on the configured schedule, only while
+the vehicle is off. These are separate settings. Configure the **Automatic restart schedule**
+and its time zone under **Advanced options** in Galaxy.
+
+### Returning to the previous version
+
+In Galaxy, choose **Select previous version**, then **Install selected version**, and confirm
+**Restore previous version**. Restoring turns off automatic downloads.
+
+Fast Update and previous-version restore depend on compatible saved software and the installed
+operating system. If the updater requires a full update, use the normal download/install path
+instead.
